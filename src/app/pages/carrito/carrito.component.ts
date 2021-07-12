@@ -123,7 +123,7 @@ export class CarritoComponent implements OnInit {
   showDeleteConfirm(key): void {
     this.modal.confirm({
       nzTitle: 'Esta seguro que desea eliminar este producto?',
-      nzOkText: 'Yes',
+      nzOkText: 'Si',
       nzOkType: 'primary',
       nzOnOk: () => this.carritoService.removeProducto(key),
       nzCancelText: 'No',
