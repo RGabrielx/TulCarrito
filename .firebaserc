@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "basecarrito-8ba3c": {
+      "hosting": {
+        "Carrito": [
+          "basecarrito-8ba3c"
+        ]
+      }
+    }
+  }
+}

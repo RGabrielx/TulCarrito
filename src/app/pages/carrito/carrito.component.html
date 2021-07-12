@@ -1,0 +1,79 @@
+<nz-card class="descripcion">
+    <div nz-card-grid [ngStyle]="gridStyle" nzHoverable="false"> <strong> Productos Del carrito</strong>
+        <div>
+            <div nz-row class="row justify-content-md-center">
+                <div nz-col *ngFor="let product of this.CarritoList">
+                    
+                    <nz-card *ngIf="product.fusuario === this.uid && product.cart_id.status === 'pending' "
+                        nzTitle="{{product.product_id.nombre}}" class="cardproduct">
+                        <br>
+                        <strong>Sku : </strong> {{product.product_id.sku}} <br>
+                        <strong>Status : </strong> {{product.cart_id.status}}<br>
+                        <strong>descripcion : </strong> {{product.product_id.descripcion}}<br>
+                        <strong>Cantidad : </strong> {{product.quantity}}
+                        <button nz-button nzType="primary" [nzSize]="'small'" nzShape="round"
+                            (click)="agregar(product)">+</button>&nbsp;
+                        <button nz-button nzType="primary" [nzSize]="'small'" nzShape="round"
+                            (click)="quitar(product)">--</button>
+                        <br>
+                        <br>
+                        <button nz-button nzType="primary" (click)="eliminar(product.$key)" nzDanger>Eliminar</button>
+                        <br>
+                        <br>
+                    </nz-card>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div nz-card-grid [ngStyle]="gridStyle1" nzHoverable="false"> <strong> Orden de compra</strong>
+        <div class="orden">
+            <div nz-row class="row justify-content-md-center">
+                <div nz-col>
+                    <nz-card class="factura">
+                        <ul class="ulcarrito">
+                            <h3> Carrito.com </h3>
+                            <li>
+                                Cra 21 N 12 . 73
+                            </li>
+                            <li> tel: +58-8487854
+                            </li>
+                        </ul>
+                        <br>
+                        <div class="aling">
+                            <strong>{{CurrentDate | date:'dd-MM-yyyy'}}</strong>
+                            <p> los productos seran enviados a la direccion proporcinada en el perfil
+                                acontinuacion listamos los productos :</p>
+                            <nz-table #basicTable [nzData]="this.CarritoList">
+                                <thead class="head">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of basicTable.data">
+                                        <td *ngIf="data.fusuario === this.uid && data.cart_id.status === 'pending' ">
+                                            {{data.product_id.nombre }}</td>
+                                        <td *ngIf="data.fusuario === this.uid && data.cart_id.status === 'pending' ">
+                                            {{data.quantity}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <th id="total" colspan="1">Total : </th>
+                                    <td>{{this.total}}</td>
+                                </tfoot>
+                            </nz-table>
+                        </div>
+                        <button nz-button nzType="primary" nzBlock (click)="terminarCompra(this.CarritoList)">Terminar
+                            Compra</button>
+                    </nz-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</nz-card>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Hola" (nzOnOk)="handleOk()" [nzCancelDisabled]="true"
+    [nzOkLoading]="isOkLoading">
+    <p nzModalContent>Hemos terminado la compra, oprime Aceptar, para volver al home</p>
+</nz-modal>

@@ -1,0 +1,39 @@
+<h4>Mis Compras</h4>
+<div>
+    <div nz-row class="row justify-content-md-center">
+
+        <div nz-col *ngFor="let product of this.CarritoList"  nzSpan="8">
+            <nz-card *ngIf="product.fusuario === this.uid && product.cart_id.status === 'completed' "
+                nzTitle="{{product.product_id.nombre}}" class="cardproduct">
+                <div nz-row>
+                    <div nz-col nzSpan="11">
+                        <strong>Sku : </strong> {{product.product_id.sku}} <br>
+                        <strong>Status : </strong> {{product.cart_id.status}}<br>
+                        <strong>descripcion : </strong> {{product.product_id.descripcion}}<br>
+                        <strong>Cantidad : </strong> {{product.quantity}}<br>
+                        <strong>Orden : </strong> {{product.cart_id.id}}
+
+                    </div>
+                    <div nz-col nzSpan="1">
+                        <nz-avatar [nzText]="product.product_id.nombre" [nzSize]="90"></nz-avatar>
+                    </div>
+                </div>
+            </nz-card>
+        </div>
+        <div *ngIf="!CarritoList.length">
+            <div class="card-body">
+                <h3 class="card-title text-center">Aun no has realizado compras</h3>
+                <div class="form-group mt-2">
+                  <p class="text-center">
+                    Te Invitamos a que elijas los articulos que mas te gusten 
+                  </p>
+                  
+                </div>
+                <div class="form-group text-center mt-5">
+                  <button class="btn btn-primary" routerLink="/home">
+                    Ir al home
+                  </button>
+                </div>
+              </div>        </div>
+    </div>
+</div>

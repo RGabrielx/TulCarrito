@@ -1,0 +1,17 @@
+<h3>Elije todo lo que quieras</h3>
+<div class="container">
+  <div nz-row class="row justify-content-md-center">
+    <div nz-col class="col-lg-3" *ngFor="let product of productList">
+      <nz-card nzTitle="{{product.nombre}}">
+        <img class="imagen" [src]=product.url>
+        <p> <strong> {{product.descripcion}} </strong></p>
+        <p> <strong> sku:  </strong> {{product.sku}}</p>
+
+        <button nz-button nzType="primary" (click)="addCarrito(product)"><i nz-icon nzType="shopping-cart"
+            nzTheme="outline" class="adiBtn"></i>Agregar al carrito</button>
+      </nz-card>
+    </div>
+
+  </div>
+</div>
+<app-products></app-products>
