@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.LoginForm.value;
     try {
       const user = await this.authSvc.Login(email, password);
-      console.log("user", user);
+      
       if (user) {
         this.incorrect = false;
         if (user && user.user.emailVerified) {

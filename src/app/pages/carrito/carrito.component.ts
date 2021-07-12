@@ -92,10 +92,6 @@ export class CarritoComponent implements OnInit {
         idcard = parseInt(this.CarritoList[l].cart_id.id);
       }
     }
-
-    console.log("productos",productos);
-    console.log("idcard",idcard);
-    console.log("CarritoList",this.CarritoList);
     
     for (var i = 0; i < productos.length; i++) {
       if (this.CarritoList[i].cart_id.status !== "completed") {
